@@ -12,7 +12,8 @@
     
 import sys
 from time import time
-sys.path.append("../tools/")
+### change the path to your own path, and remember: use "/" instead of "\"
+sys.path.append("D:/yan/ML/ud120-projects/tools/")
 from email_preprocess import preprocess
 
 
@@ -26,7 +27,26 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+import numpy as np
 
+### create a classify
+from sklearn.naive_bayes import GaussianNB
+clf=GaussianNB()
+
+### training
+t0=time()
+clf.fit(features_train,labels_train)
+print "training time:",round(time()-t0,3),"s"
+
+### predicting 
+t0=time()
+pred=clf.predict(features_test)
+print "predicting time:",round(time()-t0,3),"s"
+
+### caculate accuracy
+from sklearn.metrics import accuracy_score
+accuracy=accuracy_score(pred,labels_test)
+print "accuracy:",accuracy
 
 #########################################################
 
