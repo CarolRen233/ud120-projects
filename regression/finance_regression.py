@@ -6,18 +6,16 @@
     Loads up/formats a modified version of the dataset
     (why modified?  we've removed some trouble points
     that you'll find yourself in the outliers mini-project).
-
     Draws a little scatterplot of the training/testing data
-
     You fill in the regression code where indicated:
 """    
 
 
 import sys
 import pickle
-sys.path.append("../tools/")
+sys.path.append("D:/yan/ML/ud120-projects/tools/")
 from feature_format import featureFormat, targetFeatureSplit
-dictionary = pickle.load( open("../final_project/final_project_dataset_modified.pkl", "r") )
+dictionary = pickle.load( open("D:/yan/ML/ud120-projects/final_project/final_project_dataset_modified.pkl", "r") )
 
 ### list the features you want to look at--first item in the 
 ### list will be the "target" feature
@@ -26,10 +24,10 @@ data = featureFormat( dictionary, features_list, remove_any_zeroes=True)
 target, features = targetFeatureSplit( data )
 
 ### training-testing split needed in regression, just like classification
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 feature_train, feature_test, target_train, target_test = train_test_split(features, target, test_size=0.5, random_state=42)
 train_color = "b"
-test_color = "b"
+test_color = "r"
 
 
 
@@ -39,8 +37,9 @@ test_color = "b"
 ### "r" to differentiate training points from test points.
 
 
-
-
+from sklearn import linear_model
+reg = linear_model.LinearRegression()
+reg.fit(feature_train,target_train)
 
 
 
