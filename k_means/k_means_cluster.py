@@ -8,10 +8,10 @@
 
 
 import pickle
-import numpy
+import numpy as np
 import matplotlib.pyplot as plt
 import sys
-sys.path.append("../tools/")
+sys.path.append("D:/yan/ML/ud120-projects/tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
 
@@ -39,7 +39,7 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
 
 
 ### load in the dict of dicts containing all the data on each person in the dataset
-data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
+data_dict = pickle.load( open("D:/yan/ML/ud120-projects/final_project/final_project_dataset.pkl", "r") )
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
 
@@ -64,13 +64,26 @@ plt.show()
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=2).fit(finance_features)
+pred = kmeans.predict(finance_features)
 
+stock_value=[]
 
+for key in data_dict:
+    stock=data_dict[key]["exercised_stock_options"]
+    if stock!="NaN":
+	    stock_value.append(stock)
 
+stock_value=np.array(stock_value)
+print "max:",np.max(stock_value)
+print "min:",np.min(stock_value)
+	    
+	    
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
 try:
-    Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
+    Draw(pred, finance_features, poi, mark_poi=False,  name="clusters.pdf",f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
