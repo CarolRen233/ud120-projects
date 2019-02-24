@@ -68,6 +68,9 @@ from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=2).fit(finance_features)
 pred = kmeans.predict(finance_features)
 
+
+
+### find the max and min of exercised_stock_options
 stock_value=[]
 
 for key in data_dict:

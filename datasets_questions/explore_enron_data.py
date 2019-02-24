@@ -22,7 +22,6 @@ import pickle
 enron_data = pickle.load(open("D:/yan/ML/ud120-projects/final_project/final_project_dataset.pkl", "r"))
 
 
-
 ### Q1:How many data points are in the Enron dataset? Answer:146
 print "There are ",len(enron_data),"data points in this dataset"
 
@@ -103,4 +102,3 @@ for key in enron_data:
 		
 print "There are ",count1,"folks in this dataset have a quantified salary"
 print "There are ",count2,"folks in this dataset have a known email adress"
-
