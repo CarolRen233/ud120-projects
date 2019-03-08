@@ -117,6 +117,7 @@ def targetFeatureSplit( data ):
 
     target = []
     features = []
+    
     for item in data:
         target.append( item[0] )
         features.append( item[1:] )

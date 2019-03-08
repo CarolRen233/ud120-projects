@@ -54,7 +54,7 @@ def main():
     ff = open("D:/yan/ML/ud120-projects/text_learning/test_email.txt", "r")
     text = parseOutText(ff)
     print text
-    print type(text)
+
 
 
 
